@@ -30,18 +30,30 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXW-HH-GUg">
                                                         <rect key="frame" x="0.0" y="0.0" width="32" height="39"/>
                                                         <state key="normal" title="MC"/>
+                                                        <connections>
+                                                            <action selector="memoryExpression:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xes-me-yh0"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xd0-a8-8wT">
                                                         <rect key="frame" x="88" y="0.0" width="31.5" height="39"/>
                                                         <state key="normal" title="M+"/>
+                                                        <connections>
+                                                            <action selector="memoryExpression:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TOi-Hl-7yH"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfx-XN-Ejb">
                                                         <rect key="frame" x="175.5" y="0.0" width="32" height="39"/>
                                                         <state key="normal" title="M-"/>
+                                                        <connections>
+                                                            <action selector="memoryExpression:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SHt-N0-oBE"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3S-0u-esv">
                                                         <rect key="frame" x="263.5" y="0.0" width="31.5" height="39"/>
                                                         <state key="normal" title="MR"/>
+                                                        <connections>
+                                                            <action selector="memoryExpression:" destination="BYZ-38-t0r" eventType="touchUpInside" id="47D-rC-3Fw"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>

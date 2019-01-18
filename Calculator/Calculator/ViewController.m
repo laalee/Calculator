@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *operatorLabel;
 
+@property NSDecimalNumber* memoryNumber;
+
 @end
 
 @implementation ViewController
@@ -22,6 +24,8 @@
     [super viewDidLoad];
     
     [self clearLabels];
+    
+    self.memoryNumber = 0;
 }
 
 - (IBAction)numberExpression:(UIButton *)sender {
@@ -91,6 +95,9 @@
 
 - (IBAction)plusOrMinusExpression:(UIButton *)sender {
     
+    NSString *currentText = self.currentLabel.text;
+    
+    self.currentLabel.text = [@"-" stringByAppendingString:currentText];
 }
 
 - (void)updateLabels:(NSString *)operator
@@ -131,6 +138,30 @@
     }
     
     return result;
+}
+
+- (IBAction)memoryExpression:(UIButton *)sender {
+    
+    NSString *input = [[sender titleLabel] text];
+    
+    NSDecimalNumber *currentValue = [NSDecimalNumber decimalNumberWithString:self.currentLabel.text];
+        
+    if([input isEqualToString:@"M+"]){
+        
+        self.memoryNumber = currentValue;
+        
+    } else if([input isEqualToString:@"M-"]){
+        
+        self.memoryNumber = [NSDecimalNumber decimalNumberWithMantissa:[currentValue unsignedLongLongValue] exponent:0 isNegative:YES];
+        
+    } else if([input isEqualToString:@"MC"]){
+        
+        self.memoryNumber = 0;
+        
+    } else if([input isEqualToString:@"MR"]){
+        
+        self.currentLabel.text = [self.memoryNumber stringValue];
+    }
 }
 
 @end
