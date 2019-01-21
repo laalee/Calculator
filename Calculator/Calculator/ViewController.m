@@ -84,9 +84,16 @@
             self.operatorLabel.text = input;
         } else {
             
-            NSString *resut = [[self calculateWithOperator:operator] stringValue];
+            NSString *resut = [self calculateWithOperator:operator];
             
-            [self updateLabels:input result:resut current:@""];
+            if([resut isEqualToString:@"ERROR"]){
+                
+                [self clearLabels];
+                
+            } else {
+                
+                [self updateLabels:input result:resut current:@""];
+            }
         }
     }
 }
@@ -95,9 +102,16 @@
     
     NSString *operator = self.operatorLabel.text;
     
-    NSString *resut = [[self calculateWithOperator:operator] stringValue];
+    NSString *resut = [self calculateWithOperator:operator];
     
-    [self updateLabels:@"" result:resut current:@""];
+    if([resut isEqualToString:@"ERROR"]){
+        
+        [self clearLabels];
+        
+    } else {
+        
+        [self updateLabels:@"" result:resut current:@""];
+    }
 }
 
 - (IBAction)clearInputExpression:(UIButton *)sender {
@@ -126,7 +140,7 @@
     [self updateLabels:@"" result:@"" current:@"0"];
 }
 
-- (NSDecimalNumber *)calculateWithOperator:(NSString *)operator{
+- (NSString *)calculateWithOperator:(NSString *)operator{
     
     NSDecimalNumber *result;
     
@@ -144,12 +158,17 @@
         result = [leftOperand decimalNumberByMultiplyingBy:rightOperand];
     } else if([operator isEqualToString:@"/"]){
         
-        if(rightOperand == 0){ return result; }
+        if([rightOperand integerValue] == 0){
+            
+            [self validateAlert:@"ERROR"];
+            
+            return @"ERROR";
+        }
         
         result = [leftOperand decimalNumberByDividingBy:rightOperand];
     }
     
-    return result;
+    return [result stringValue];
 }
 
 - (IBAction)memoryExpression:(UIButton *)sender {
@@ -178,6 +197,19 @@
         
         self.currentLabel.text = [self.memoryNumber stringValue];
     }
+}
+
+- (void)validateAlert:(NSString *)title {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:@""
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end
